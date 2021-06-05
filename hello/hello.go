@@ -1,12 +1,25 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
+	"log"
 
-    "example.com/greetings"
+	"example.com/greetings"
 )
 
 func main() {
-    message := greetings.Hello("Bibin")
-    fmt.Println(message)
+	// Set properties of the predefined Logger, including
+	// the log entry prefix and a flag to disable printing
+	// the time, source file, and line number.
+	log.SetPrefix("greetings: ")
+	log.SetFlags(0)
+
+	// Request a greeting message.
+	message, err := greetings.Hello("Bibin")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(message)
 }
